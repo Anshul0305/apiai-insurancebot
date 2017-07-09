@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   $json = json_decode($requestBody);
   $busRoute = $json->result->parameters->BusRoute;
   $destination = $json->result->parameters->BusDestination;
-  $speech = "Next ".$busRoute." Towards ".$destination." is coming soon....";
+  $speech = "Next ".$busRoute." Towards ".$destination." will come late....";
   
   $response = new \stdClass();
   $response->speech = $speech;
