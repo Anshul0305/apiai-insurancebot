@@ -59,13 +59,13 @@ function health_insurance($healthInsurance){
       $speech = "For whom are you looking health insurance? For yourself, family or parents?";
       break;
     case 'family':
-      $speech = "Ok, so you need insurance for your family";
+      $speech = "Ok, so you need insurance for your family.\n How many members are there in your family?";
       break;
     case 'parents':
-      $speech = "Ok, so you need insurance for your parents";
+      $speech = "Ok, so you need insurance for your parents. \n Do you need insurance for your Father, Mother or Both?";
       break;
     case 'self':
-      $speech = "Ok, so you need insurance for your self";
+      $speech = "Ok, so you need insurance for your self. \n May I know your age please?";
       break; 
     default:
       $speech = "Sorry, cant get it. For whom are you looking health insurance? For yourself, family or parents?";
