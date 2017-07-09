@@ -1,5 +1,6 @@
 
 <?php
+include_once("classes/health_insurance.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -14,11 +15,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
   // Process the response and add business logic
   switch ($insuranceType) {
-    case 'travel':
-      $speech = "So you need travel insurance";
+    case 'health':
+      $healthInsurance = new HealthInsurance();
+      $healthInsurance->for = $healthInsuranceFor;
+      $healthInsurance->selfAge = "";
+      $healthInsurance->fatherAge = "";
+      $healthInsurance->motherAge = "";
+      echo health_insurance($healthInsurance);
       break;
 
-    case 'health':
+    case 'travel':
       $speech = "So you need health insurance";
       break;
     
@@ -38,20 +44,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
       $speech = "Sorry, couldnt get you. Please let me know what insurance do you need?";
       break;
   }
-
-  // Create the speech response
-  $response = new \stdClass();
-  $response->speech = $speech;
-  $response->displayText = $speech;
-  $response->source = "apiai-php-insurance-chatbot";
-
-  // Create and Send the json back to APIAI
-  $jsonResponse = json_encode($response);
-  echo $jsonResponse;
 }
 else
 {
   echo "Method not allowed";
+}
+
+
+function health_insurance($healthInsurance){
+   // Create the speech response
+  $response = new \stdClass();
+  $response->speech = $healthInsurance->for;
+  $response->displayText = "test";
+  $response->source = "apiai-php-insurance-chatbot";
+
+  // Create and Send the json back to APIAI
+  $jsonResponse = json_encode($response);
+  return $jsonResponse;
 }
 
 ?>
