@@ -54,9 +54,24 @@ else
 function health_insurance($healthInsurance){
    // Create the speech response
   $speech = "";
-  if($healthInsurance->for == ""){
-    $speech = "For whom do you need this insurance? Family, Parents or Yourself?";
+  switch ($healthInsurance->for) {
+    case '':
+      $speech = "For whom are you looking health insurance? For yourself, family or parents?";
+      break;
+    case 'family':
+      $speech = "Ok, so you need insurance for your family";
+      break;
+    case 'parents':
+      $speech = "Ok, so you need insurance for your parents";
+      break;
+    case 'self':
+      $speech = "Ok, so you need insurance for your self";
+      break; 
+    default:
+      $speech = "Sorry, cant get it. For whom are you looking health insurance? For yourself, family or parents?";
+      break;
   }
+
   $response = new \stdClass();
   $response->speech = $speech;
   $response->displayText = "test";
