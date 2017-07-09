@@ -53,8 +53,12 @@ else
 
 function health_insurance($healthInsurance){
    // Create the speech response
+  $speech = "";
+  if($healthInsurance->for == ""){
+    $speech = "For whom do you need this insurance? Family, Parents or Yourself?";
+  }
   $response = new \stdClass();
-  $response->speech = $healthInsurance->for;
+  $response->speech = $speech;
   $response->displayText = "test";
   $response->source = "apiai-php-insurance-chatbot";
 
